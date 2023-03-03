@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import postSchema from "../model/post.js"
 
 const userSchema = Schema({
     firstName: String,
