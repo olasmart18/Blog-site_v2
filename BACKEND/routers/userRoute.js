@@ -16,7 +16,7 @@ router.post("/register", register)
 router.post("/login", login);
 router.get("/login", myLoginPage)
 router.get("/register", myRegPage)
-router.get("/", isAdmin, isUser, homePage)
+router.get("/", isUser, homePage)
 
 
 

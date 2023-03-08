@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "workbench.preferredDarkColorTheme": "Tomorrow Night Blue",
+    "workbench.preferredHighContrastColorTheme": "Red",
+    "workbench.preferredHighContrastLightColorTheme": "Visual Studio Dark",
+    "window.autoDetectColorScheme": true,
+    "editor.colorDecorators": true,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true
+}

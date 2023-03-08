@@ -13,8 +13,8 @@ dotenv.config();
 
 const port = process.env.PORT;
 
-const aboutContent = "Read about us here"
-const contactContent = "contact Us here"
+// const aboutContent = "Read about us here"
+// const contactContent = "contact Us here"
 const posts = [];
 const app = express();
 
@@ -51,42 +51,42 @@ app.get("/contact", function (req, res) {
     res.render("pages/contact", { contactContent: contactContent })
 })
 
-app.get("/compose", function (req, res) {
-    res.render("pages/compose")
-})
+// app.get("/compose", function (req, res) {
+//     res.render("pages/compose")
+// })
 
 // app.get("/register", function (req, res){
 //     res.render("pages/register")
 // })
 
 
-app.post("/compose", function (req, res) {
-    const post = {
-        title: req.body.postTitle,
-        content: req.body.postContent
-    };
-    posts.push(post);
-    // console.log(posts);
-    res.redirect("/");
-});
+// app.post("/compose", function (req, res) {
+//     const post = {
+//         title: req.body.postTitle,
+//         content: req.body.postContent
+//     };
+//     posts.push(post);
+//     // console.log(posts);
+//     res.redirect("/");
+// });
 
-app.get("/post/:postName", function (req, res) {
-    // console.log();
-    const requestedPostName = _.lowerCase(req.params.postName);
+// app.get("/post/:postName", function (req, res) {
+//     // console.log();
+//     const requestedPostName = _.lowerCase(req.params.postName);
 
 
-    posts.forEach(function (post) {
-        const postNameTitle = _.lowerCase(post.title);
-        if (requestedPostName === postNameTitle) {
-            res.render("pages/post", { 
-                inComingPostTitle: post.title, 
-                inComingPost: post.content
-            });
-        } else {
-            console.log("match not found");
-        }
-    })
-})
+//     posts.forEach(function (post) {
+//         const postNameTitle = _.lowerCase(post.title);
+//         if (requestedPostName === postNameTitle) {
+//             res.render("pages/post", { 
+//                 inComingPostTitle: post.title, 
+//                 inComingPost: post.content
+//             });
+//         } else {
+//             console.log("match not found");
+//         }
+//     })
+// })
 
 app.listen(port, function () {
     connect();

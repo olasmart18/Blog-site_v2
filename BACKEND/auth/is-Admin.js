@@ -1,10 +1,10 @@
 
  const isAdmin = async(req, res, next) =>{
     if(req.session && req.session.isAdmin){
-       next()
+      return next()
     }else{
         // console.log("");
-        res.send("you are not authorised")
+        res.send("NOT AUTHORISED")
     }
 }
 export default isAdmin;

@@ -1,26 +1,27 @@
 import post from "../model/post.js";
 
-export const postPage = async(req, res) => {
-    res.render("pages/post")
-}
+
 export const getAllPost = async (req, res) => {
-    try {
-        const founddPosts = await post.find({})
-        res.redirect("/post")
-        // res.status(200).json({
-        //     success: true,
-        //     message: "posts found",
-        //     data: founddPosts
-        // })
-    } catch (error) {
-        res.status(404).json({
-            success: false,
-            message: "cannot find post"
-        })
+    const founddPosts = await post.find({})
+  
+if(founddPosts !== null){
+   
+           return  res.render("pages/post",
+                {
+                   posts: founddPosts
+                })
+    }else
+    {
+        return res.status(401)
+        .json({
+                success: false,
+                message: "cannot find post"
+            })
     }
 }
 
-export const getSinglePost = async (rew, res) => {
+
+export const getSinglePost = async (req, res) => {
     const title = req.params.title
     try {
         const founddPost = await post.findOne({ title: title });
@@ -37,15 +38,18 @@ export const getSinglePost = async (rew, res) => {
     }
 }
 
+export const compose = async (req, res) => {
+    return res.render("pages/compose")
+}
+
 export const createPost = async (req, res) => {
     const newPost = new post(req.body);
     try {
         const savePost = await newPost.save()
-        res.status(200).json({
-            success: true,
-            message: "post created",
-            data: savePost
-        })
+        res.redirect("/")
+       
+
+
     } catch (error) {
         res.status(401).json({
             success: false,

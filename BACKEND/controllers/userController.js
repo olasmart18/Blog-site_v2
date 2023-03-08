@@ -40,11 +40,6 @@ export const register = async (req, res) => {
         await newReg.save();
         res.redirect("/login");
 
-        // return res.status(200).json({
-        //     succuss: true,
-        //     message: "successful!",
-        //     data: newUser
-        // })
 
     } catch (error) {
         res.status(401).json({
@@ -66,15 +61,12 @@ export const login = async (req, res) => {
         if (findUser) {
             const checkPassword = bcrypt.compareSync(password, findUser.password)
             if (checkPassword) {
-                req.session.isAdmin = true ;
+                // req.session.isAdmin = true ;
                 req.session.isUser = true;
                 req.session.user = findUser._id;
-                req.session.role = "admin" 
+                req.session.role = "user" 
                return res.redirect("/")
-                // res.status(200).json({
-                //     succuss: true,
-                //     message: "user logged in"
-                // })
+                
             } else {
               return  res.status(401).json({
                     succuss: false,
@@ -87,6 +79,5 @@ export const login = async (req, res) => {
         res.status(404).json({
             succuss: false,
             message: "failed, try again!"
-        })
-    
+        })   
 }
