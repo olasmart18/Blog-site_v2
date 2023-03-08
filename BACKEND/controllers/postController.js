@@ -3,17 +3,16 @@ import post from "../model/post.js";
 
 export const getAllPost = async (req, res) => {
     const founddPosts = await post.find({})
-  
-if(founddPosts !== null){
-   
-           return  res.render("pages/post",
-                {
-                   posts: founddPosts
-                })
-    }else
-    {
+
+    if (founddPosts !== null) {
+
+        return res.render("pages/posts",
+            {
+                posts: founddPosts
+            })
+    } else {
         return res.status(401)
-        .json({
+            .json({
                 success: false,
                 message: "cannot find post"
             })
@@ -23,14 +22,19 @@ if(founddPosts !== null){
 
 export const getSinglePost = async (req, res) => {
     const title = req.params.title
-    try {
-        const founddPost = await post.findOne({ title: title });
-        res.status(200).json({
-            success: true,
-            message: "post found",
-            data: founddPost
-        })
-    } catch (error) {
+ const founddPost = await post.findOne({ title: title });
+    
+       if (founddPost){
+            const postTitle = founddPost.title;
+            const postContent = founddPost.content;
+
+            res.render("pages/post", {
+                postTitle,
+                postContent
+            })
+       }
+       
+    else {
         res.status(404).json({
             success: false,
             message: "cannot find post"
@@ -47,7 +51,7 @@ export const createPost = async (req, res) => {
     try {
         const savePost = await newPost.save()
         res.redirect("/")
-       
+
 
 
     } catch (error) {
