@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const postSchema = Schema ({
     title: String,
     content: String,
-    review: []
+    comments: Array
 })
 
 const Post = model("Post", postSchema);

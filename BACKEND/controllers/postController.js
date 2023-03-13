@@ -50,7 +50,7 @@ export const createPost = async (req, res) => {
     const newPost = new post(req.body);
     try {
         const savePost = await newPost.save()
-        res.redirect("/")
+        res.redirect("/posts")
 
 
 
@@ -81,11 +81,13 @@ export const deleteAllPost = async (req, res) => {
 export const deleteSinglePost = async (req, res) => {
     const title = req.params.title
     try {
-        await post.findOneAndDelete({ title: title })
-        res.status(200).json({
-            success: true,
-            message: "posts deleted"
-        })
+       const del =  await post.findOneAndDelete({ title: title })
+       console.log(del);
+        res.redirect("/posts")
+        // res.status(200).json({
+        //     success: true,
+        //     message: "posts deleted"
+        // })
     } catch (error) {
         res.status(401).json({
             success: false,
@@ -94,20 +96,43 @@ export const deleteSinglePost = async (req, res) => {
     }
 }
 
-export const updatePost = async (req, res) => {
-    const title = req.params.title;
+// export const updatePost = async (req, res) => {
+//     const title = req.params.title;
+//     try {
+//         await post.findOneAndUpdate({ title: title },
+//             { $push: req.body.comments },
+//             { new: true });
+//         res.status(200).json({
+//             success: true,
+//             message: "posts updated"
+//         })
+//     } catch (error) {
+//         res.status(401).json({
+//             success: false,
+//             message: "failed!, try again"
+//         })
+//     }
+// }
+
+export const comment = async(req, res)=> {
+    const title = req.body.title
+    const comment = req.body.comments
+
     try {
-        await post.findOneAndUpdate({ title },
-            { $set: req.body },
-            { new: true });
-        res.status(200).json({
-            success: true,
-            message: "posts updated"
-        })
+         const findPost = await post.findOneAndUpdate({title: title},
+    {$push : {comments: comment}})
+    console.log(findPost);
+
+    res.redirect("/");
+   console.log(findPost);
+
+//    findPost.push(comment) 
+
     } catch (error) {
-        res.status(401).json({
+        res.status(404).json({
             success: false,
-            message: "failed!, try again"
+            message: "error, try again!"
         })
     }
+  
 }

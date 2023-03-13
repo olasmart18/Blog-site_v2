@@ -43,13 +43,13 @@ app.use("/", postRoute);
 //     res.render("pages/home", { homeStartingContent: homeStartingContent, Posts: posts })
 // });
 
-app.get("/about", function (req, res) {
-    res.render("pages/about", { aboutContent: aboutContent });
-})
+// app.get("/about", function (req, res) {
+//     res.render("pages/about", { aboutContent: aboutContent });
+// })
 
-app.get("/contact", function (req, res) {
-    res.render("pages/contact", { contactContent: contactContent })
-})
+// app.get("/contact", function (req, res) {
+//     res.render("pages/contact", { contactContent: contactContent })
+// })
 
 // app.get("/compose", function (req, res) {
 //     res.render("pages/compose")

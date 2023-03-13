@@ -6,6 +6,11 @@
       <p> <%= post.content.substring(0, 100) + "..."  %>
        <a href="/post/<%= post.title %> ">read more</a> 
    </p>  
+      <form action="/posts/delete/<%= post.title %>" method="post">   
+          <button type="submit">delete</button>
+      </form>
+     
+
    <%})%>
  
 <%- include("footer") -%>

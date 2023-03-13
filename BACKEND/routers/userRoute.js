@@ -4,7 +4,9 @@ import {
     login,
     myLoginPage,
     myRegPage,
-    homePage
+    homePage,
+    contactPage,
+    aboutPage
 } from "../controllers/userController.js";
 
 import isAdmin from "../auth/is-Admin.js";
@@ -17,6 +19,8 @@ router.post("/login", login);
 router.get("/login", myLoginPage)
 router.get("/register", myRegPage)
 router.get("/", isUser, homePage)
+router.get("/contact", isUser, contactPage)
+router.get("/about", isUser,aboutPage)
 
 
 

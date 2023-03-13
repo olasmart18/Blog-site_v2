@@ -25,7 +25,7 @@ export const register = async (req, res) => {
 
     const foundUser = await User.findOne({ email: email });
     if (foundUser) {
-       return res.send("user already exist, please login")
+        return res.send("user already exist, please login")
     }
     const newReg = new User({
         firstName: req.body.firstName,
@@ -55,29 +55,41 @@ export const login = async (req, res) => {
     const password = req.body.password
 
 
-   
-        const findUser = await User.findOne({ email: email })
 
-        if (findUser) {
-            const checkPassword = bcrypt.compareSync(password, findUser.password)
-            if (checkPassword) {
-                // req.session.isAdmin = true ;
-                req.session.isUser = true;
-                req.session.user = findUser._id;
-                req.session.role = "user" 
-               return res.redirect("/")
-                
-            } else {
-              return  res.status(401).json({
-                    succuss: false,
-                    message: " email or password incorrect"
-                })
-            }
+    const findUser = await User.findOne({ email: email })
 
+    if (findUser) {
+        const checkPassword = bcrypt.compareSync(password, findUser.password)
+        if (checkPassword) {
+            // req.session.isAdmin = true ;
+            req.session.isUser = true;
+            req.session.user = findUser._id;
+            req.session.role = "user"
+            return res.redirect("/")
+
+        } else {
+            return res.status(401).json({
+                succuss: false,
+                message: " email or password incorrect"
+            })
         }
-    
-        res.status(404).json({
-            succuss: false,
-            message: "failed, try again!"
-        })   
+
+    }
+
+    res.status(404).json({
+        succuss: false,
+        message: "failed, try again!"
+    })
+}
+
+
+export const contactPage = async (req, res) => {
+    res.render("pages/contact")
+
+}
+
+
+export const aboutPage = async (req, res) => {
+    res.render("pages/about")
+
 }
