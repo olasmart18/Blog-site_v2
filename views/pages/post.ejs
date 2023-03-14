@@ -1,9 +1,10 @@
 <%- include("header") -%>
 
-<h3> <%= postTitle %> </h3>
-<p> <%= postContent %> </p>
+
 
 <form action="/post/<%= postTitle %>" method="post">
+    <h3> <%= postTitle %> </h3>
+<p> <%= postContent %> </p>
     <input type="text" name="comment" placeholder="comment">
     <button type="submit">send</button>
 </form>

@@ -115,18 +115,12 @@ export const deleteSinglePost = async (req, res) => {
 // }
 
 export const comment = async(req, res)=> {
-    const title = req.body.title
-    const comment = req.body.comments
-
+    const title = req.params.title
+    const comment = req.body.comment
     try {
-         const findPost = await post.updateOne({title: title},
-    {$push : {comments: comment}})
-    console.log(findPost);
-
-    res.redirect("/");
-   console.log(findPost);
-
-//    findPost.push(comment) 
+         const findPost = await post.findOneAndUpdate({title: title},
+    {$push : {comments: comment}}, {new: true})
+    res.redirect("/posts");
 
     } catch (error) {
         res.status(404).json({
