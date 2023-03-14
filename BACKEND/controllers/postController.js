@@ -119,7 +119,7 @@ export const comment = async(req, res)=> {
     const comment = req.body.comments
 
     try {
-         const findPost = await post.findOneAndUpdate({title: title},
+         const findPost = await post.updateOne({title: title},
     {$push : {comments: comment}})
     console.log(findPost);
 
