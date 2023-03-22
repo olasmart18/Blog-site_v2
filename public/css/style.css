@@ -13,8 +13,9 @@ width: 100%;
 height: 10vh;
 background: burlywood;
 text-align: center;
-position:relative;
-bottom:0;
+margin-top: 400px;
+/* position:relative; */
+/* bottom:0; */
 }
 
 footer p{
@@ -55,13 +56,49 @@ footer p{
 }
 
 .lgn{
+    background: burlywood;
     width: 30%;
-    /* margin: 30px auto; */
-    border: 1px solid;
+    border-radius: 20px;
+    margin: 30px auto;
+    /* border: 1px solid; */
     height: auto;
 }
 
 .frm input{
     display: flex;
     flex-direction: column;
+    margin: auto;
+}
+.frm input {
+    width: 80%;
+    height: auto;
+    margin-top: 30px;
+    outline: none;
+    background: transparent;
+}
+
+.frm button {
+    background: transparent;
+    width: 80%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+   margin-left:50px ;
+   text-decoration-color: lightslategray;
+}
+
+.lgn h1{
+    text-align: center;
+    color: lightslategrey;
+}
+
+.frm  p{
+    color: lightslategray;
+    margin-left: 53px;
+    margin-bottom: 10px;
+}
+
+.frm p a{
+    text-decoration: double;
+    color: ;
 }
