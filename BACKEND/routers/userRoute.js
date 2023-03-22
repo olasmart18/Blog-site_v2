@@ -6,7 +6,8 @@ import {
   myRegPage,
   homePage,
   contactPage,
-  aboutPage
+  aboutPage,
+  logout
 } from '../controllers/userController.js';
 
 // import isAdmin from '../auth/is-Admin.js';
@@ -21,5 +22,6 @@ router.get('/register', myRegPage);
 router.get('/', isUser, homePage);
 router.get('/contact', isUser, contactPage);
 router.get('/about', isUser, aboutPage);
+router.get('/logout', logout);
 
 export default router;

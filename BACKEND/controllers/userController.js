@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import User from '../model/user.js';
 
-// const homeStartingContent = "welcome to my blog website, stay calm as we serve you intresting content"
-
 export const myLoginPage = async (req, res) => {
   res.render('pages/login');
 };
@@ -55,7 +53,7 @@ export const login = async (req, res) => {
   if (findUser) {
     const checkPassword = bcrypt.compareSync(password, findUser.password);
     if (checkPassword) {
-      // req.session.isAdmin = true ;
+      req.session.isAdmin = true;
       req.session.isUser = true;
       req.session.user = findUser._id;
       req.session.role = 'user';
@@ -71,6 +69,17 @@ export const login = async (req, res) => {
   res.status(404).json({
     succuss: false,
     message: 'failed, try again!'
+  });
+};
+
+export const logout = async (req, res) => {
+  req.session.destroy((err) => {
+    if (!err) {
+      res.clearCookie('connect.sid');
+      res.redirect('/login');
+    } else {
+      res.render('pages/error');
+    }
   });
 };
 
