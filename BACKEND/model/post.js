@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
-const postSchema = Schema ({
-    title: String,
-    content: String,
-    comments: Array
-})
+const postSchema = Schema({
+  title: String,
+  content: String,
+  comments: Array
+});
 
-const Post = model("Post", postSchema);
+const Post = model('Post', postSchema);
 
 export default Post;
